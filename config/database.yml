@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: kodone_backend_development
+
+test:
+  <<: *default
+  database: kodone_backend_test
+
+production:
+  <<: *default
+  database: kodone_backend_production
+  username: kodone_backend
+  password: <%= ENV['KODONE_BACKEND_DATABASE_PASSWORD'] %>
