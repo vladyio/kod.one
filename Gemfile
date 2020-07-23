@@ -18,6 +18,7 @@ end
 
 group :development do
   gem 'rubocop'
+  gem 'rspec-rails'
   gem 'solargraph'
   gem 'listen', '~> 3.2'
   gem 'spring'
