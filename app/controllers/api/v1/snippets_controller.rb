@@ -7,6 +7,12 @@ class API::V1::SnippetsController < ApplicationController
     render json: @snippets, status: 200
   end
 
+  def create
+    @snippet = Snippet.create(snippet_params)
+
+    render json: @snippet, status: 200
+  end
+
   def show
     render json: @snippet
   end
