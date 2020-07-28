@@ -15,4 +15,4 @@ production:
   <<: *default
   database: kodone_backend_production
   username: kodone_backend
-  password: <%= Rails.application.secrets.dig(:database, :password) %>
+  password: <%= Rails.application.credentials.dig(:database, :password) %>
