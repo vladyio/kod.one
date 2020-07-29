@@ -1,6 +1,8 @@
 class Snippet < ApplicationRecord
   before_create :generate_and_set_short_id
 
+  belongs_to :language
+
   private
 
   def generate_and_set_short_id
