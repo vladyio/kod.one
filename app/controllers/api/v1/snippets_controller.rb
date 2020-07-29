@@ -32,7 +32,7 @@ class API::V1::SnippetsController < ApplicationController
   private
 
   def set_snippet
-    @snippet = Snippet.find(params[:id])
+    @snippet = Snippet.find_by(sid: params[:sid])
   end
 
   def snippet_params
