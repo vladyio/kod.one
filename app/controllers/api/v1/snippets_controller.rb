@@ -4,23 +4,23 @@ class API::V1::SnippetsController < ApplicationController
   def index
     @snippets = Snippet.all
 
-    render json: @snippets, status: 200
+    render json: SnippetSerializer.new(@snippets), status: 200
   end
 
   def create
     @snippet = Snippet.create(snippet_params)
 
-    render json: @snippet, status: 200
+    render json: SnippetSerializer.new(@snippet), status: 200
   end
 
   def show
-    render json: @snippet
+    render json: SnippetSerializer.new(@snippet), status: 200
   end
 
   def update
     @snippet.update(snippet_params)
 
-    render json: @snippet, status: 200
+    render json: SnippetSerializer.new(@snippet), status: 200
   end
 
   def destroy
