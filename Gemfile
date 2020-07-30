@@ -9,7 +9,7 @@ gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 gem 'nanoid'
-gem 'fast_jsonapi', require: false
+gem 'fast_jsonapi'
 gem 'whenever', require: false
 
 group :development, :test do
