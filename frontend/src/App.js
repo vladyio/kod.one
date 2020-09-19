@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Snippet from './components/snippet'
-import Footer from './components/footer'
+import Snippet from './components/Snippet'
+import Footer from './components/Footer'
 
 import {
   BrowserRouter as Router,

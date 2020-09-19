@@ -4,9 +4,8 @@ import './index.css'
 import LanguageAPI from '../../api/language'
 
 class LanguageSelect extends React.Component {
-  constructor(props) {
-    super(props)
-
+  constructor() {
+    super()
     this.state = {
       languages: [],
       selected: null

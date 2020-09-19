@@ -17,7 +17,7 @@ import "ace-builds/src-noconflict/mode-c_cpp";
 
 class Snippet extends React.Component {
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       id: null,
