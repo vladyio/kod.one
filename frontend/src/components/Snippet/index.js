@@ -4,16 +4,9 @@ import React from "react";
 import "./index.css";
 import throttle from "lodash/throttle";
 
-import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/theme-tomorrow_night";
-
-import "ace-builds/src-noconflict/mode-c_cpp";
-
-// TODO: refactor
-// const languages = ['ruby', 'javascript', 'html', 'css'];
-// languages.forEach(lang => {
-//   require(`ace-builds/src-noconflict/mode-${lang}`)
-// });
+import AceEditor from "react-ace"
+import "ace-builds"
+import "ace-builds/webpack-resolver"
 
 class Snippet extends React.Component {
   constructor(props) {
@@ -22,7 +15,7 @@ class Snippet extends React.Component {
     this.state = {
       id: null,
       code: "",
-      mode: "c_cpp",
+      mode: "ruby",
     };
 
     this.updateSnippet = this.updateSnippet.bind(this);
@@ -67,12 +60,6 @@ class Snippet extends React.Component {
   handleChange(newValue) {
     this.setState({ code: newValue });
     this.updateSnippetThrottled(newValue);
-  }
-
-  handleModeSelect(event) {
-    const mode = event.target.value;
-
-    this.setState({ mode: mode });
   }
 
   render() {
