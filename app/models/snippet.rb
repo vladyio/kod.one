@@ -6,7 +6,7 @@ class Snippet < ApplicationRecord
   private
 
   def set_default_language
-    self.language = Language.find_by_title('text')
+    self.language ||= Language.find_by_title('text')
   end
 
   def generate_and_set_short_id

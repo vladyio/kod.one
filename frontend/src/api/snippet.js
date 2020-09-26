@@ -37,6 +37,20 @@ const SnippetAPI = {
       },
     });
     return await response.json()
+  },
+
+  async fork(snippetId) {
+    const response = await fetch(`${env.API_URL}/snippets/fork`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sid: snippetId
+      })
+    })
+
+    return await response.json()
   }
 }
 

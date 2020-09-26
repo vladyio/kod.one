@@ -1,5 +1,5 @@
 class API::V1::SnippetsController < ApplicationController
-  before_action :set_snippet, only: %i[show destroy update]
+  before_action :set_snippet, only: %i[show destroy update fork]
 
   def index
     @snippets = Snippet.all
@@ -27,6 +27,12 @@ class API::V1::SnippetsController < ApplicationController
     @snippet.destroy
 
     render json: { status: 200 }
+  end
+
+  def fork
+    snippet_fork = SnippetForkService.call(sid: params[:sid])
+
+    render json: SnippetSerializer.new(snippet_fork), status: 200
   end
 
   private
