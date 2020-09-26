@@ -1,5 +1,8 @@
 import React from 'react'
 import {
+  Select
+} from "@chakra-ui/core"
+import {
   connect
 } from 'react-redux';
 import {
@@ -43,13 +46,13 @@ class LanguageSelect extends React.Component {
 
   render() {
     return (
-      <select onChange={this.handleChange} value={this.props.modeId}>
+      <Select onChange={this.handleChange} value={this.props.modeId} backgroundColor='#333' color='white' width='10%'>
         {this.state.languages.map(([id, title]) => {
           return (
             <option key={title} value={id}>{title}</option>
           )
         })}
-      </select>
+      </Select>
     )
   }
 }

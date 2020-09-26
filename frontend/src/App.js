@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  ChakraProvider,
+  Flex
+} from "@chakra-ui/core"
 import './App.css';
 import Snippet from './components/Snippet'
 import Footer from './components/Footer'
@@ -11,15 +15,19 @@ import {
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Switch>
-          <Route exact path='/' component={Snippet} />
-          <Route exact path='/:snippetId' component={Snippet} />
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+    <ChakraProvider resetCSS>
+      <Router>
+        <div className="app">
+          <Flex direction='column'>
+            <Switch>
+              <Route exact path='/' component={Snippet} />
+              <Route exact path='/:snippetId' component={Snippet} />
+            </Switch>
+            <Footer />
+          </Flex>
+        </div>
+      </Router>
+    </ChakraProvider>
   );
 }
 

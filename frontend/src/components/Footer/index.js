@@ -1,30 +1,34 @@
 import React from 'react'
+import {
+  Link,
+  Text,
+  Flex, Spacer, Box
+} from "@chakra-ui/core"
+
 import './index.css'
 
+import ForkButton from '../ForkButton'
 import LanguageSelect from '../LanguageSelect'
 
 const Footer = () => {
   return (
     <footer>
-      <ul className='footer-nav'>
-        <li>
-          <a className='footer-action create-new' href='/' target='_blank'>
-            CREATE NEW
-          </a>
-        </li>
+      <Flex direction={['row']}>
+        <Box mr='10px'>
+          <ForkButton />
+        </Box>
+        <LanguageSelect />
 
-        <li>
-          <LanguageSelect />
-        </li>
+        <Spacer />
 
-        <li>
-          <a className='copyright' target="_blank"
-            href="https://github.com/vladyio"
-            rel="noopener noreferrer">
-            &copy; Vladislav Andreev
-          </a>
-        </li>
-      </ul>
+        <Link href='https://github.com/vladyio/kod.one'
+          target='_blank'
+          color='white'
+          display='block'
+          marginTop='8px'>
+          <Text>&copy; Vladislav Andreev</Text>
+        </Link>
+      </Flex>
     </footer>
     )
 }

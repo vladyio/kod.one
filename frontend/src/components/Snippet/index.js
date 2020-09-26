@@ -33,7 +33,6 @@ class Snippet extends React.Component {
   }
 
   getExistingSnippet(snippetId) {
-    console.log(snippetId);
     SnippetAPI.get(snippetId)
       .then((snippet) => {
         this.props.setSnippetLanguage(
