@@ -18,7 +18,6 @@ class LanguageSelect extends React.Component {
     super()
     this.state = {
       languages: [],
-      selected: null
     }
   }
 
@@ -57,7 +56,6 @@ class LanguageSelect extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    selected: state.snippet.mode,
     modeId: state.snippet.modeId,
     snippetId: state.snippet.snippetId
   }
