@@ -1,21 +1,25 @@
-import SnippetAPI from "../../api/snippet";
-
 import React from "react";
-import "./index.css";
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux'
 import throttle from "lodash/throttle";
-
 import AceEditor from "react-ace"
 import "ace-builds"
 import "ace-builds/webpack-resolver"
 
+import SnippetAPI from "../../api/snippet";
+import { setLoadedSnippetId, setSnippetLanguage } from "../../actions/snippet";
+import "./index.css";
+
 class Snippet extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
 
     this.state = {
-      id: null,
       code: "",
-      mode: "ruby",
     };
 
     this.updateSnippet = this.updateSnippet.bind(this);
@@ -24,15 +28,20 @@ class Snippet extends React.Component {
 
   componentDidMount() {
     const snippetId = this.props.match.params.snippetId;
-
     this.getExistingSnippet(snippetId);
+    this.props.setLoadedSnippetId(snippetId);
   }
 
   getExistingSnippet(snippetId) {
+    console.log(snippetId);
     SnippetAPI.get(snippetId)
       .then((snippet) => {
+        this.props.setSnippetLanguage(
+          snippet.data.attributes.language.id,
+          snippet.data.attributes.language.title
+        )
+
         this.setState({
-          id: snippetId,
           code: snippet.data.attributes.code,
         });
       })
@@ -43,18 +52,17 @@ class Snippet extends React.Component {
 
   createEmptySnippet() {
     SnippetAPI.create(this.state.code).then((snippet) => {
-      this.setState({
-        id: snippet.data.id,
-      });
-
-      this.props.history.push(`/${this.state.id}`);
+      this.props.setSnippetLanguage(
+        snippet.data.attributes.language.id,
+        snippet.data.attributes.language.title
+      )
+      this.props.history.push(`/${snippet.data.id}`);
     });
   }
 
   updateSnippet(value) {
-    const id = this.state.id;
-
-    SnippetAPI.update(id, value).catch((err) => console.error(err));
+    const id = this.props.snippetId
+    SnippetAPI.update(id, { code: value }).catch((err) => console.error(err));
   }
 
   handleChange(newValue) {
@@ -66,7 +74,7 @@ class Snippet extends React.Component {
     return (
       <AceEditor
         className="code-snippet"
-        mode={this.state.mode}
+        mode={this.props.mode}
         theme="tomorrow_night"
         value={this.state.code}
         fontSize={18}
@@ -83,4 +91,16 @@ class Snippet extends React.Component {
   }
 }
 
-export default Snippet;
+const mapStateToProps = (state) => {
+  return {
+    mode: state.snippet.mode,
+    snippetId: state.snippet.snippetId
+  }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  setLoadedSnippetId: setLoadedSnippetId,
+  setSnippetLanguage: setSnippetLanguage,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Snippet);

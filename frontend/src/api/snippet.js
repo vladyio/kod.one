@@ -16,16 +16,14 @@ const SnippetAPI = {
     return await response.json()
   },
 
-  async update(snippetId, snippetValue) {
+  async update(snippetId, snippetParams) {
     const response = await fetch(`${env.API_URL}/snippets/${snippetId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        snippet: {
-          code: snippetValue
-        }
+        snippet: snippetParams
       })
     })
     return await response.json()

@@ -36,6 +36,6 @@ class API::V1::SnippetsController < ApplicationController
   end
 
   def snippet_params
-    params.require(:snippet).permit(:code)
+    params.require(:snippet).permit(:code, :language_id)
   end
 end
