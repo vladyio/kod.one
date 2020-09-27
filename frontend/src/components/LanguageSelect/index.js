@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Button,
-  Select,
   Menu,
   MenuItem,
   MenuList,
@@ -53,7 +52,7 @@ class LanguageSelect extends React.Component {
     return (
       <Menu>
         <MenuButton as={Button} rightIcon={<FiChevronDown />}
-                    colorScheme="teal" variant="solid">
+                    colorScheme="teal" variant="outline">
           {this.props.mode}
         </MenuButton>
           <MenuList>

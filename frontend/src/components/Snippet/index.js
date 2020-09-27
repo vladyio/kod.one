@@ -12,7 +12,6 @@ import "ace-builds/webpack-resolver"
 
 import SnippetAPI from "../../api/snippet";
 import { setLoadedSnippetId, setSnippetLanguage } from "../../actions/snippet";
-import "./index.css";
 
 class Snippet extends React.Component {
   constructor() {
