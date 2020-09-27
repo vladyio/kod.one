@@ -13,7 +13,7 @@ const Footer = () => {
       <Flex direction={["row"]}>
         <Box mr="10px">
           <ForkButton />
-        </Box>{" "}
+        </Box>
         <LanguageSelect />
         <Spacer />
         <SettingsPopover />
@@ -25,9 +25,9 @@ const Footer = () => {
           marginTop="8px"
           marginLeft="10px"
         >
-          <Text> & copy; Vladislav Andreev </Text>{" "}
-        </Link>{" "}
-      </Flex>{" "}
+          <Text> &copy; Vladislav Andreev </Text>
+        </Link>
+      </Flex>
     </footer>
   );
 };

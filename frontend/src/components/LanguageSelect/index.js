@@ -3,7 +3,6 @@ import { Button, Menu, MenuItem, MenuList, MenuButton } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import "./index.css";
 import LanguageAPI from "../../api/language";
 import { changeSnippetLanguage } from "../../actions/snippet";
 import SnippetAPI from "../../api/snippet";
