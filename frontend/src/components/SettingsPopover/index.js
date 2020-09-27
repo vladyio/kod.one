@@ -11,9 +11,13 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
+  PopoverFooter,
   FormLabel,
   Input,
   Button,
+  Text,
+  Link,
+  Center
 } from "@chakra-ui/core";
 
 import SnippetAPI from "../../api/snippet";
@@ -44,6 +48,19 @@ const SettingsPopover = ({ snippetId, setLoadedSnippetId }) => {
           <FormLabel> Snippet ID </FormLabel>
           <Input placeholder={snippetId} onChange={handleChange} />
         </PopoverBody>
+        <PopoverFooter className="copyright">
+          <Center>
+            <Link
+              href="https://github.com/vladyio/kod.one"
+              target="_blank"
+              display="block"
+              marginTop="8px"
+              marginLeft="10px"
+            >
+              <Text> &copy; Vladislav Andreev </Text>
+            </Link>
+          </Center>
+        </PopoverFooter>
       </PopoverContent>
     </Popover>
   );

@@ -1,4 +1,4 @@
-footer {
+footer:not(.copyright) {
   padding: 8px 40px;
   background-color:#212325;
 }

@@ -17,16 +17,6 @@ const Footer = () => {
         <LanguageSelect />
         <Spacer />
         <SettingsPopover />
-        <Link
-          href="https://github.com/vladyio/kod.one"
-          target="_blank"
-          color="white"
-          display="block"
-          marginTop="8px"
-          marginLeft="10px"
-        >
-          <Text> &copy; Vladislav Andreev </Text>
-        </Link>
       </Flex>
     </footer>
   );
