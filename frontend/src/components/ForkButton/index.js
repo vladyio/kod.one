@@ -13,7 +13,7 @@ const ForkButton = ({ snippetId }) => {
       const sid = snippetFork.data.id
       window.open(`${currentUrl}/${sid}`)
     }).catch((error) => {
-      // TODO | Add alert with error
+      // TODO Add alert with error
     })
   }
 
