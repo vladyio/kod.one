@@ -18,9 +18,8 @@ const ForkButton = ({ snippetId }) => {
   }
 
   return (
-    <Button colorScheme="teal" variant="solid" onClick={handleClick}>
+    <Button colorScheme="teal" variant="solid" onClick={handleClick} rightIcon={<GoRepoForked size="1.2em" />}>
       <Text>Fork</Text>
-      <GoRepoForked size="1.2em" />
     </Button>
   )
 }

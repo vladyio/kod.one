@@ -1,6 +1,11 @@
 import React from 'react'
 import {
-  Select
+  Button,
+  Select,
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuButton
 } from "@chakra-ui/core"
 import {
   connect
@@ -15,6 +20,7 @@ import {
   changeSnippetLanguage
 } from "../../actions/snippet";
 import SnippetAPI from '../../api/snippet';
+import { FiChevronDown } from 'react-icons/fi';
 
 class LanguageSelect extends React.Component {
   constructor(props) {
@@ -34,10 +40,9 @@ class LanguageSelect extends React.Component {
     })
   }
 
-  handleChange = (event) => {
-    const value = event.target.value
-    this.props.changeSnippetLanguage(value, this.languageTitleById(value))
-    SnippetAPI.update(this.props.snippetId, { language_id: value })
+  handleChange = (event, id, title) => {
+    this.props.changeSnippetLanguage(id, title)
+    SnippetAPI.update(this.props.snippetId, { language_id: id })
   }
 
   languageTitleById = (id) => {
@@ -46,13 +51,23 @@ class LanguageSelect extends React.Component {
 
   render() {
     return (
-      <Select onChange={this.handleChange} value={this.props.modeId} backgroundColor='#333' color='white' width='10%'>
-        {this.state.languages.map(([id, title]) => {
-          return (
-            <option key={title} value={id}>{title}</option>
-          )
-        })}
-      </Select>
+      <Menu>
+        <MenuButton as={Button} rightIcon={<FiChevronDown />}
+                    colorScheme="teal" variant="solid">
+          {this.props.mode}
+        </MenuButton>
+          <MenuList>
+            {
+              this.state.languages.map(([id, title]) => {
+                return (
+                  <MenuItem key={title} onClick={(e) => this.handleChange(e, id, title)}>
+                    {title}
+                  </MenuItem>
+                )
+              })
+            }
+          </MenuList>
+      </Menu>
     )
   }
 }
@@ -60,6 +75,7 @@ class LanguageSelect extends React.Component {
 const mapStateToProps = (state) => {
   return {
     modeId: state.snippet.modeId,
+    mode: state.snippet.mode,
     snippetId: state.snippet.snippetId
   }
 }
