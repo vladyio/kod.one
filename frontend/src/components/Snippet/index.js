@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  connect
-} from 'react-redux';
-import {
-  bindActionCreators
-} from 'redux'
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import throttle from "lodash/throttle";
-import AceEditor from "react-ace"
-import "ace-builds"
-import "ace-builds/webpack-resolver"
+import AceEditor from "react-ace";
+import "ace-builds";
+import "ace-builds/webpack-resolver";
 
 import SnippetAPI from "../../api/snippet";
 import { setLoadedSnippetId, setSnippetLanguage } from "../../actions/snippet";
@@ -36,7 +32,7 @@ class Snippet extends React.Component {
         this.props.setSnippetLanguage(
           snippet.data.attributes.language.id,
           snippet.data.attributes.language.title
-        )
+        );
 
         this.setState({
           code: snippet.data.attributes.code,
@@ -53,19 +49,23 @@ class Snippet extends React.Component {
       this.props.setSnippetLanguage(
         snippet.data.attributes.language.id,
         snippet.data.attributes.language.title
-      )
+      );
       this.props.setLoadedSnippetId(snippet.data.id);
       this.props.history.push(`/${snippet.data.id}`);
     });
   }
 
   updateSnippet(value) {
-    const id = this.props.snippetId
-    SnippetAPI.update(id, { code: value }).catch((err) => console.error(err));
+    const id = this.props.snippetId;
+    SnippetAPI.update(id, {
+      code: value,
+    }).catch((err) => console.error(err));
   }
 
   handleChange(newValue) {
-    this.setState({ code: newValue });
+    this.setState({
+      code: newValue,
+    });
     this.updateSnippetThrottled(newValue);
   }
 
@@ -93,13 +93,17 @@ class Snippet extends React.Component {
 const mapStateToProps = (state) => {
   return {
     mode: state.snippet.mode,
-    snippetId: state.snippet.snippetId
-  }
-}
+    snippetId: state.snippet.snippetId,
+  };
+};
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  setLoadedSnippetId: setLoadedSnippetId,
-  setSnippetLanguage: setSnippetLanguage,
-}, dispatch)
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      setLoadedSnippetId: setLoadedSnippetId,
+      setSnippetLanguage: setSnippetLanguage,
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Snippet);
