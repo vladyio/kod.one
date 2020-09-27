@@ -1,7 +1,13 @@
 import React from 'react'
 import {
-  connect
+  connect,
 } from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux'
+import {
+  setLoadedSnippetId,
+} from "../../actions/snippet";
 import {
   FiSettings
 } from "react-icons/fi"
@@ -15,7 +21,17 @@ import {
   PopoverCloseButton, FormLabel, Input, Button
 } from "@chakra-ui/core"
 
-const SettingsPopover = ({ snippetId }) => {
+import SnippetAPI from '../../api/snippet'
+
+const SettingsPopover = ({ snippetId, setLoadedSnippetId }) => {
+  function handleChange(event) {
+    const value = event.target.value
+    SnippetAPI.update(snippetId, { sid: value }).then((snippet) => {
+      setLoadedSnippetId(snippet.data.id)
+      window.history.replaceState(null, null, `/${value}`)
+    })
+  }
+
   return (
     <Popover placement='top'>
       <PopoverTrigger>
@@ -31,7 +47,7 @@ const SettingsPopover = ({ snippetId }) => {
         <PopoverHeader>Settings</PopoverHeader>
         <PopoverBody>
           <FormLabel>Snippet ID</FormLabel>
-          <Input placeholder={snippetId} />
+          <Input placeholder={snippetId} onChange={handleChange} />
         </PopoverBody>
       </PopoverContent>
     </Popover>
@@ -44,4 +60,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(SettingsPopover)
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  setLoadedSnippetId: setLoadedSnippetId,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPopover)

@@ -29,7 +29,6 @@ class Snippet extends React.Component {
   componentDidMount() {
     const snippetId = this.props.match.params.snippetId;
     this.getExistingSnippet(snippetId);
-    this.props.setLoadedSnippetId(snippetId);
   }
 
   getExistingSnippet(snippetId) {
@@ -43,6 +42,7 @@ class Snippet extends React.Component {
         this.setState({
           code: snippet.data.attributes.code,
         });
+        this.props.setLoadedSnippetId(snippet.data.id);
       })
       .catch((_err) => {
         this.createEmptySnippet();
@@ -55,6 +55,7 @@ class Snippet extends React.Component {
         snippet.data.attributes.language.id,
         snippet.data.attributes.language.title
       )
+      this.props.setLoadedSnippetId(snippet.data.id);
       this.props.history.push(`/${snippet.data.id}`);
     });
   }
