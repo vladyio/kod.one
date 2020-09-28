@@ -41,7 +41,7 @@ const SettingsPopover = ({ snippetId, setLoadedSnippetId }) => {
   }
 
   return (
-    <Popover placement="top">
+    <Popover placement="top-start">
       <PopoverTrigger>
         <Button colorScheme="teal" variant="outline">
           <FiSettings size="1.2em" />
