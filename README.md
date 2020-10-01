@@ -14,4 +14,6 @@ Code snippets made easy
 
 - [ ] Read-only snippets
 - [ ] Set passwords for snippets
-- [ ] Organize snippets in collections
+- [ ] Collaboration for multiple users
+- [ ] Organize snippets into collections
+
