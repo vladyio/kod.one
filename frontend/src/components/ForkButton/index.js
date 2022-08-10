@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Text } from "@chakra-ui/core";
+import { Button, Text } from "@chakra-ui/react";
 import { GoRepoForked } from "react-icons/go";
 
-import { Notification } from "../Notification";
 import SnippetAPI from "../../api/snippet";
 
 const ForkButton = ({ snippetId }) => {

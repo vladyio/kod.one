@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Text, Flex, Spacer, Box } from "@chakra-ui/core";
+import { Flex, Spacer, Box } from "@chakra-ui/react";
 
 import "./index.css";
 
