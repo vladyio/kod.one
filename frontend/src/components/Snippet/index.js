@@ -16,12 +16,12 @@ const Snippet = (props) => {
   let navigate = useNavigate()
   const updateThrottled = useCallback(
     throttle((newValue) => {
-    updateSnippet(newValue)
+    handleChange(newValue)
   }, 1000), [])
 
   useEffect(() => {
     getExistingSnippet(snippetId)
-  })
+  }, [snippetId])
 
   function createEmptySnippet() {
     SnippetAPI.create(code).then((snippet) => {
@@ -41,7 +41,7 @@ const Snippet = (props) => {
           snippet.data.attributes.language.id,
           snippet.data.attributes.language.title
         )
-        console.log(`${snippetId}, ${snippet.data.attributes.code}`)
+
         setCode(snippet.data.attributes.code)
 
         props.setLoadedSnippetId(snippet.data.id)
