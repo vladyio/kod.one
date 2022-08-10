@@ -24,8 +24,7 @@ group :development do
   gem 'rspec-rails'
   gem 'solargraph'
   gem 'listen', '~> 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '~> 3'
 
   gem "capistrano", "~> 3.14", require: false
   gem 'capistrano-rvm',     require: false
