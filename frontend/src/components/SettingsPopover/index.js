@@ -23,7 +23,7 @@ import {
   Center,
   Flex,
   Switch,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 
 import SnippetAPI from "../../api/snippet";
 

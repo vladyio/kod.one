@@ -1,5 +1,5 @@
 import React from "react";
-import { ChakraProvider, Flex } from "@chakra-ui/core";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
 import "./App.css";
 import Snippet from "./components/Snippet";
 import Footer from "./components/Footer";

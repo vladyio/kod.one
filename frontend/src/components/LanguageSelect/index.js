@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Menu, MenuItem, MenuList, MenuButton } from "@chakra-ui/core";
+import { Button, Menu, MenuItem, MenuList, MenuButton } from "@chakra-ui/react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
