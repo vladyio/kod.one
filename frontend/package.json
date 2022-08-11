@@ -22,7 +22,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "5.x",
     "react-router-redux": "^4.0.8",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && scp -P 2233 -r ./build/* deployer@139.59.156.227:/var/www/kod.one/html"
+    "deploy": ""
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -4,7 +4,7 @@ import "./App.css";
 import Snippet from "./components/Snippet";
 import Footer from "./components/Footer";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -12,10 +12,10 @@ function App() {
       <Router>
         <div className="app">
           <Flex direction="column">
-            <Routes>
-              <Route exact path="/" element={<Snippet />} />
-              <Route exact path="/:snippetId" element={<Snippet />} />
-            </Routes>
+            <Switch>
+              <Route exact path="/" component={Snippet} />
+              <Route exact path="/:snippetId" component={Snippet} />
+            </Switch>
             <Footer />
           </Flex>
         </div>

@@ -1,92 +1,101 @@
-import React, { useEffect, useState, useCallback } from "react"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import throttle from "lodash/throttle"
-import AceEditor from "react-ace"
-import { useNavigate, useParams } from "react-router-dom"
-import "ace-builds"
-import "ace-builds/webpack-resolver"
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import throttle from "lodash/throttle";
+import AceEditor from "react-ace";
+import "ace-builds";
+import "ace-builds/webpack-resolver";
 
-import SnippetAPI from "../../api/snippet"
-import { setLoadedSnippetId, setSnippetLanguage } from "../../actions/snippet"
+import SnippetAPI from "../../api/snippet";
+import { setLoadedSnippetId, setSnippetLanguage } from "../../actions/snippet";
 
-const Snippet = (props) => {
-  const [code, setCode] = useState("")
-  let { snippetId } = useParams()
-  let navigate = useNavigate()
-  const updateThrottled = useCallback(
-    throttle((newValue) => {
-    handleChange(newValue)
-  }, 1000), [])
+class Snippet extends React.Component {
+  constructor() {
+    super();
 
-  useEffect(() => {
-    getExistingSnippet(snippetId)
-  }, [snippetId])
+    this.state = {
+      code: "",
+    };
 
-  function createEmptySnippet() {
-    SnippetAPI.create(code).then((snippet) => {
-      props.setSnippetLanguage(
-        snippet.data.attributes.language.id,
-        snippet.data.attributes.language.title
-      )
-      props.setLoadedSnippetId(snippet.data.id)
-      navigate(`/${snippet.data.id}`)
-    })
+    this.updateSnippet = this.updateSnippet.bind(this);
+    this.updateSnippetThrottled = throttle(this.updateSnippet, 1000);
   }
 
-  function getExistingSnippet(snippetId) {
+  componentDidMount() {
+    const snippetId = this.props.match.params.snippetId;
+    this.getExistingSnippet(snippetId);
+  }
+
+  getExistingSnippet(snippetId) {
     SnippetAPI.get(snippetId)
       .then((snippet) => {
-        props.setSnippetLanguage(
+        this.props.setSnippetLanguage(
           snippet.data.attributes.language.id,
           snippet.data.attributes.language.title
-        )
+        );
 
-        setCode(snippet.data.attributes.code)
-
-        props.setLoadedSnippetId(snippet.data.id)
+        this.setState({
+          code: snippet.data.attributes.code,
+        });
+        this.props.setLoadedSnippetId(snippet.data.id);
       })
       .catch((_err) => {
-        createEmptySnippet()
-      })
+        this.createEmptySnippet();
+      });
   }
 
-  function updateSnippet(value) {
-    SnippetAPI.update(snippetId, {
+  createEmptySnippet() {
+    SnippetAPI.create(this.state.code).then((snippet) => {
+      this.props.setSnippetLanguage(
+        snippet.data.attributes.language.id,
+        snippet.data.attributes.language.title
+      );
+      this.props.setLoadedSnippetId(snippet.data.id);
+      this.props.history.push(`/${snippet.data.id}`);
+    });
+  }
+
+  updateSnippet(value) {
+    const id = this.props.snippetId;
+    SnippetAPI.update(id, {
       code: value,
-    }).catch((err) => console.error(err))
+    }).catch((err) => console.error(err));
   }
 
-  function handleChange(newValue) {
-    setCode(newValue)
-    updateSnippet(newValue)
+  handleChange(newValue) {
+    this.setState({
+      code: newValue,
+    });
+    this.updateSnippetThrottled(newValue);
   }
 
-  return (
-    <AceEditor
-      className="code-snippet"
-      mode={props.mode}
-      theme="tomorrow_night"
-      value={code}
-      fontSize={18}
-      setOptions={{
-        enableBasicAutocompletion: true,
-        tabSize: 2,
-        useSoftTabs: true,
-      }}
-      width="100%"
-      height="calc(100vh - 3em)"
-      onChange={updateThrottled}
-    />
-  )
+  render() {
+    return (
+      <AceEditor
+        className="code-snippet"
+        mode={this.props.mode}
+        theme="tomorrow_night"
+        value={this.state.code}
+        fontSize={18}
+        setOptions={{
+          enableBasicAutocompletion: true,
+          tabSize: 2,
+          useSoftTabs: true,
+        }}
+        width="100%"
+        height="calc(100vh - 3em)"
+        onChange={(newValue) => this.handleChange(newValue)}
+      />
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
     mode: state.snippet.mode,
     snippetId: state.snippet.snippetId,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -95,6 +104,6 @@ const mapDispatchToProps = (dispatch) =>
       setSnippetLanguage: setSnippetLanguage,
     },
     dispatch
-  )
+  );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Snippet)
+export default connect(mapStateToProps, mapDispatchToProps)(Snippet);
