@@ -12,8 +12,6 @@ Code snippets made easy
 
 ## TODO:
 
-- [ ] Read-only snippets
 - [ ] Set passwords for snippets
-- [ ] Collaboration for multiple users
 - [ ] Organize snippets into collections
 
