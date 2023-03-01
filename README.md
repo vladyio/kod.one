@@ -18,6 +18,20 @@ to go! Nothing extra.
 
 ![Screenshot](shot.png)
 
+## Run with Docker (❗️development only)
+
+**Step 1**. Prepare the database:
+
+```sh
+docker-compose run app rake db:prepare
+```
+
+**Step 2**. Run the app:
+
+```sh
+docker-compose up
+```
+
 ## Features
 
 - [x] Syntax highlight (powered by Ace editor)

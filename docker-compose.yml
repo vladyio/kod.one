@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  app:
+    platform: linux/x86_64
+    build: .
+    image: kod_one_api
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWD: example
+      POSTGRES_HOST: db
+    ports:
+      - 3000:3000
+  db:
+    image: postgres:alpine3.17
+    environment:
+      POSTGRES_PASSWORD: example
+  frontend:
+    container_name: k1-frontend
+    build: ./frontend
+    ports:
+      - 80:3001
