@@ -7,13 +7,14 @@
 </div>
 
 <div align="center">
-  💎 Ruby 3 · 🛤 Rails 7 · ⚛️ React 18
+  💎 Ruby 3.2 · 🛤 Rails 7 · ⚛️ React 18
 </div>
 <br />
 
-**Kod.One** is a simple tool which allows creating and sharing small pieces of code or just text with your friends and collegues. 
+**Kod.One** is a code snippets sharing tool.
 
-The goal of this project is to be an easy and quick tool.
+Paste some code and you're good
+to go! Nothing extra.
 
 ![Screenshot](shot.png)
 
@@ -22,9 +23,3 @@ The goal of this project is to be an easy and quick tool.
 - [x] Syntax highlight (powered by Ace editor)
 - [x] Custom snippet IDs
 - [x] Create forks of existing snippets
-
-## TODO:
-
-- [ ] Set passwords for snippets
-- [ ] Organize snippets into collections
-
