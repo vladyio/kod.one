@@ -7,14 +7,17 @@
 </div>
 
 <div align="center">
-  💎 Ruby 3.2 · 🛤 Rails 7 · ⚛️ React 18
+  🐳 Docker · 💎 Ruby 3.2 · 🛤 Rails 7 · ⚛️ React 18
 </div>
 <br />
 
-**Kod.One** is a code snippets sharing tool.
+<div align="center">
+  <strong>Kod.One</strong> is a code snippets sharing tool.
+  <br>
+  Paste some code and you're good to go! Nothing extra.
+</div>
 
-Paste some code and you're good
-to go! Nothing extra.
+<br>
 
 ![Screenshot](shot.png)
 
