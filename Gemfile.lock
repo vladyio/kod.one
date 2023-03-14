@@ -141,7 +141,7 @@ GEM
     puma (6.1.1)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.6.2)
+    rack (2.2.6.4)
     rack-cors (2.0.0)
       rack (>= 2.0.0)
     rack-test (2.0.2)
@@ -246,6 +246,7 @@ GEM
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
+  x86_64-linux
   x86_64-linux-musl
 
 DEPENDENCIES
