@@ -13,6 +13,7 @@ services:
       - 3000:3000
     volumes:
       - .:/app
+      - gem_cache:/gems
   db:
     image: postgres:alpine3.17
     environment:
@@ -27,3 +28,4 @@ services:
 
 volumes:
   db_data:
+  gem_cache:
