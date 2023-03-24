@@ -23,13 +23,19 @@
 
 ## Run with Docker (❗️development only)
 
-**Step 1**. Prepare the database:
+**Step 1**. Create `.env` file from sample:
 
 ```sh
-docker-compose run app rake db:prepare
+cp .env.sample .env
 ```
 
-**Step 2**. Run the app:
+**Step 2**. Prepare the database:
+
+```sh
+docker-compose run backend rake db:prepare
+```
+
+**Step 3**. Run the app:
 
 ```sh
 docker-compose up

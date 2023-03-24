@@ -1,7 +1,10 @@
 .git*
 log/*
 tmp/*
+
 Dockerfile
 
 README.md
 shot.png
+
+frontend/

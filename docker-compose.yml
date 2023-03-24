@@ -5,19 +5,18 @@ services:
     platform: linux/x86_64
     build: .
     container_name: k1-backend
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWD: example
-      POSTGRES_HOST: db
+    env_file:
+      - .env
     ports:
       - 3000:3000
     volumes:
-      - .:/app
-      - gem_cache:/gems
+      - bundle:/usr/local/bundle
+    depends_on:
+      - db
   db:
     image: postgres:alpine3.17
-    environment:
-      POSTGRES_PASSWORD: example
+    env_file:
+      - .env
     volumes:
       - db_data:/var/lib/postgresql/data
   frontend:
@@ -28,4 +27,4 @@ services:
 
 volumes:
   db_data:
-  gem_cache:
+  bundle:
