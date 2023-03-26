@@ -1,8 +1,16 @@
 .git*
-log/*
-tmp/*
 
-Dockerfile
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
 .env.sample
 
 README.md
