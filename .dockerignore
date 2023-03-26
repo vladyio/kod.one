@@ -3,6 +3,7 @@ log/*
 tmp/*
 
 Dockerfile
+.env.sample
 
 README.md
 shot.png

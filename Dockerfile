@@ -8,6 +8,7 @@ COPY Gemfile* .
 
 ENV BUNDLE_JOBS=4 \
   BUNDLE_RETRY=3 \
+  BUNDLE_FORCE_RUBY_PLATFORM=1 \
   LANG=C.UTF-8
 
 RUN bundle install
