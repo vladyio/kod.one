@@ -1,4 +1,4 @@
-FROM ruby:3.2.1-alpine AS builder
+FROM ruby:3.2.2-alpine AS builder
 
 RUN apk add \
   build-base \
@@ -8,14 +8,14 @@ COPY Gemfile* .
 
 ENV BUNDLE_JOBS=4 \
   BUNDLE_RETRY=3 \
-  BUNDLE_FORCE_RUBY_PLATFORM=1 \
   LANG=C.UTF-8
 
-RUN bundle install
+RUN gem install bundler && bundle install
 
-FROM ruby:3.2.1-alpine AS runner
+FROM ruby:3.2.2-alpine AS runner
 
 RUN apk add \
+  build-base \
   tzdata \
   nodejs \
   postgresql-dev
