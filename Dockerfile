@@ -18,7 +18,8 @@ RUN apk add \
   build-base \
   tzdata \
   nodejs \
-  postgresql-dev
+  postgresql-dev \
+  gcompat
 
 WORKDIR /app
 
